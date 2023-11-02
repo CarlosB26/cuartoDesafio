@@ -1,0 +1,54 @@
+<table id="tabla-template" role= "grid">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Stock</th>
+        </tr>
+    </thead>
+    <tbody id="prods">
+        {{#each productos}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{title}}</td>
+            <td>{{price}}</td>
+            <td>{{stock}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+ <h1>Agregar Producto</h1>
+    <form id="productForm">
+        <label for="title">Nombre:</label>
+        <input type="text" id="title" name="title" required><br>
+
+        <label for="description">Descripción:</label>
+        <textarea id="description" name="description" required></textarea><br>
+
+        <label for="code">Código:</label>
+        <input type="text" id="code" name="code" required><br>
+
+        <label for="price">Precio:</label>
+        <input type="number" step="0.01" id="price" name="price" required><br>
+
+        <label for="stock">Stock:</label>
+        <input type="number" id="stock" name="stock" required><br>
+
+        <label for="thumbnails">Imágenes:</label>
+        <input type="file" id="thumbnails" name="thumbnails" multiple accept="image/*"><br>
+
+        <button type="submit">Agregar Producto</button>
+    </form>
+<!-- Formulario para eliminar un producto por ID -->
+<h1>Eliminar Registro</h1>
+<form id="eliminarForm" method="post">
+    <label for="id">ID:</label>
+    <input type="text" id="id" name="id" required>
+    <button type="submit" id="eliminarBtn">Eliminar</button>
+</form>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+<script src="/js/script.js"></script>
