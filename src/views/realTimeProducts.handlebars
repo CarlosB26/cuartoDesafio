@@ -1,4 +1,4 @@
-<table id="tabla-template" role= "grid">
+<table id="tabla-template" role="grid">
     <thead>
         <tr>
             <th scope="col">ID</th>
@@ -19,38 +19,144 @@
     </tbody>
 </table>
 
- <h1>Agregar Producto</h1>
-    <form id="productForm">
-        <label for="title">Nombre:</label>
-        <input type="text" id="title" name="title" required><br>
+<h1>Agregar Producto</h1>
+<form id="productForm">
+    <label for="title">Nombre:</label>
+    <input type="text" id="title" name="title" required><br>
 
-        <label for="description">Descripción:</label>
-        <textarea id="description" name="description" required></textarea><br>
+    <label for="description">Descripción:</label>
+    <textarea id="description" name="description" required></textarea><br>
 
-        <label for="code">Código:</label>
-        <input type="text" id="code" name="code" required><br>
+    <label for="code">Código:</label>
+    <input type="text" id="code" name="code" required><br>
 
-        <label for="price">Precio:</label>
-        <input type="number" step="0.01" id="price" name="price" required><br>
+    <label for="price">Precio:</label>
+    <input type="number" step="0.01" id="price" name="price" required><br>
 
-        <label for="stock">Stock:</label>
-        <input type="number" id="stock" name="stock" required><br>
+    <label for="stock">Stock:</label>
+    <input type="number" id="stock" name="stock" required><br>
 
-        <label for="thumbnails">Imágenes:</label>
-        <input type="file" id="thumbnails" name="thumbnails" multiple accept="image/*"><br>
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="category" required><br>
 
-        <button type="submit">Agregar Producto</button>
-    </form>
+
+    <label for="thumbnails">Imágenes:</label>
+    <input type="text" id="thumbnails" name="thumbnails" multiple accept="image/*"><br>
+
+    <button id="agregarBtn" >Agregar Producto</button>
+</form>
+<script>
+    document.getElementById("agregarBtn").addEventListener("click", () => {
+    // Obtener los valores del formulario
+    const title = document.getElementById("title").value;
+    const description = document.getElementById("description").value;
+    const code = document.getElementById("code").value;
+    const price = document.getElementById("price").value;
+    const stock = document.getElementById("stock").value;
+    const category = document.getElementById("category").value;
+    const thumbnails = document.getElementById("thumbnails").value;
+
+    // Crear un objeto de producto
+    const product = {
+        title,
+        description,
+        code,
+        price,
+        status: true,
+        stock,
+        category,
+        thumbnails: thumbnails || [],
+    };
+
+    console.log(product);
+
+    // Validar el objeto de producto
+    if (!product.title || !product.description || !product.price || !product.thumbnails || !product.code || !product.stock) {
+        console.error("Todos los campos son obligatorios");
+        return;
+    }
+
+    // Enviar una solicitud POST a la ruta /products
+    try {
+        console.log("Enviando solicitud POST...");
+        fetch("http://localhost:8080/api/products", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(product)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Comprobar si el producto se ha agregado correctamente
+            if (data.success) {
+                // Actualizar el formulario para mostrar un mensaje de éxito
+                document.getElementById("productForm").innerHTML = `
+                <h1>Producto agregado correctamente</h1>
+            `;
+            } else {
+                // Mostrar un mensaje de error
+                console.error(data.error);
+            }
+        })
+        .catch(error => {
+            // Mostrar un mensaje de error
+            console.error(error);
+        });
+    } catch (error) {
+        console.error(error);
+    }
+});
+</script>
+
+
 <!-- Formulario para eliminar un producto por ID -->
 <h1>Eliminar Registro</h1>
-<form id="eliminarForm" method="post">
+<form id="eliminarForm">
     <label for="id">ID:</label>
-    <input type="text" id="id" name="id" required>
-    <button type="submit" id="eliminarBtn">Eliminar</button>
+    <input type="text" id="idElim" name="id" required>
+    <button id="eliminarBtn">Eliminar</button>
 </form>
+<script>
+
+    document.getElementById("eliminarBtn").addEventListener("click", () => {
+    const id = document.getElementById("idElim").value;
+    console.log(id);
+
+    // Codificar el placeholder en URL codificado
+    const encodedId = encodeURIComponent(id);
+
+    // Enviar la solicitud DELETE con el ID codificado
+    try {
+        fetch("http://localhost:8080/api/products/" + encodedId, {
+            method: "DELETE",
+            body: JSON.stringify({
+                id: id
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Comprobar si se ha eliminado el producto correctamente
+            if (data.success) {
+                // Actualizar el formulario para mostrar un mensaje de éxito
+                document.getElementById("eliminarForm").innerHTML = `
+                    <h1>Producto eliminado correctamente</h1>
+                `;
+            } else {
+                // Mostrar un mensaje de error
+                console.error(data.error);
+            }
+        })
+        .catch(error => console.log(error.status));
+    } catch (error) {
+        // Mostrar un mensaje de error
+        console.error(error);
+    }
+});
+</script>
+
+
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 <script src="js/script.js" type="application/javascript"></script>
-
-

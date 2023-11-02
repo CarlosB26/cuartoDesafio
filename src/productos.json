@@ -42,31 +42,25 @@
     ]
   },
   {
-    "id": 20231025105453880,
-    "title": "Producto 5",
-    "description": "Descripción del producto 5",
-    "code": "P1005",
-    "price": 159.99,
+    "id": 20231102112755136,
+    "title": "Producto 4",
+    "description": "Este lo agregue desde app",
+    "code": "100523",
+    "price": "45.24",
     "status": true,
-    "stock": 155,
+    "stock": "2",
     "category": "musica",
-    "thumbnails": [
-      "imagen1.jpg",
-      "imagen2.jpg"
-    ]
+    "thumbnails": []
   },
   {
-    "id": 20231030142256610,
-    "title": "Producto 6",
-    "description": "Descripción del producto 5",
-    "code": "P10051",
-    "price": 159.99,
+    "id": 20231102112924144,
+    "title": "Producto 5",
+    "description": "Otro producto desde app",
+    "code": "14889",
+    "price": "556",
     "status": true,
-    "stock": 155,
-    "category": "musica",
-    "thumbnails": [
-      "imagen1.jpg",
-      "imagen2.jpg"
-    ]
+    "stock": "78",
+    "category": "electronica",
+    "thumbnails": []
   }
 ]
