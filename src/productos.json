@@ -51,16 +51,5 @@
     "stock": "2",
     "category": "musica",
     "thumbnails": []
-  },
-  {
-    "id": 20231102112924144,
-    "title": "Producto 5",
-    "description": "Otro producto desde app",
-    "code": "14889",
-    "price": "556",
-    "status": true,
-    "stock": "78",
-    "category": "electronica",
-    "thumbnails": []
   }
 ]

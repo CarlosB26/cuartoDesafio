@@ -46,7 +46,8 @@
     <button id="agregarBtn" >Agregar Producto</button>
 </form>
 <script>
-    document.getElementById("agregarBtn").addEventListener("click", () => {
+    document.getElementById("agregarBtn").addEventListener("click", (e) => {
+    e.preventDefault();
     // Obtener los valores del formulario
     const title = document.getElementById("title").value;
     const description = document.getElementById("description").value;
@@ -118,8 +119,8 @@
     <button id="eliminarBtn">Eliminar</button>
 </form>
 <script>
-
-    document.getElementById("eliminarBtn").addEventListener("click", () => {
+    document.getElementById("eliminarBtn").addEventListener("click", (e) => {
+    e.preventDefault();
     const id = document.getElementById("idElim").value;
     console.log(id);
 
