@@ -10,7 +10,7 @@ const bodyTemplate = Handlebars.compile(`{{#each productos}}
                                         </tr>
                                     {{/each}}`);
 
-socket.on('updateProducts', (productos) => {
+socket.on('List', (productos) => {
 
   // Inserta el cuerpo de la tabla en el documento HTML.
   const body = bodyTemplate({ productos });

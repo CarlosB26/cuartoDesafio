@@ -26,7 +26,8 @@ class ProductManager {
     }
 
     addProduct(product) {
-        if (!product.title || !product.description || !product.price || !product.thumbnails || !product.code || !product.stock || !product.category) {
+
+        if (!product.title || !product.description || !product.price || !product.thumbnails || !product.code || !product.stock || !product.category || !product.status) {
             console.error("Todos los campos son obligatorios");
             return;
         }
@@ -107,8 +108,12 @@ class ProductManager {
     deleteProduct(id) {
         return new Promise((resolve, reject) => {
             this.loadProducts();
+            console.log("Productos:", this.products);
+            console.log(typeof(this.products.id))
+            console.log(typeof(id));
 
             const index = this.products.findIndex((p) => p.id === id);
+            console.log("Índice:", index);
 
             if (index === -1) {
               reject("Producto no encontrado");

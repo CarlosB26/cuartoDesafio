@@ -42,14 +42,25 @@
     ]
   },
   {
-    "id": 20231102112755136,
+    "id": 20231106204022570,
     "title": "Producto 4",
-    "description": "Este lo agregue desde app",
-    "code": "100523",
-    "price": "45.24",
+    "description": "agragado desde app",
+    "code": "p89996",
+    "price": 152.5,
     "status": true,
-    "stock": "2",
-    "category": "musica",
-    "thumbnails": []
+    "stock": 54,
+    "category": "Musica",
+    "thumbnails": "imagen1.jpg, imagen2.jpg"
+  },
+  {
+    "id": 20231106204048580,
+    "title": "Producto 5",
+    "description": "agragado desde app",
+    "code": "p89996",
+    "price": 15,
+    "status": true,
+    "stock": 198,
+    "category": "electronica",
+    "thumbnails": "imagen1.jpg, imagen2.jpg"
   }
 ]
